@@ -30,6 +30,8 @@ const check = document.getElementById("check");
 //via Book function and start render function
 function submit() {
   if (
+    author.value===null|| 
+    author.value===""||
     title.value === null ||
     title.value === "" ||
     pages.value === null ||
@@ -37,7 +39,15 @@ function submit() {
   ) {
     alert("Please fill all fields!");
     return false;
-  } else {
+  } else if (
+   
+    pages.value <=0
+  ) {
+    alert("Pages must be more than 0");
+    return false;
+  }
+  
+  else {
     let book = new Book(title.value, author.value, pages.value, check.checked);
     myLibrary.push(book);
     render();
